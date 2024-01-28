@@ -36,6 +36,9 @@ result = calculate_product(10, 20)
 print(f"Resulting value is {result}")
 '''
 
+'''
+  Measures execution time of the function to decorate using the function to log with 
+'''
 def measure_execution_time_decorator_function(function_to_decorate, function_to_log_with=default_print_line) : 
   def time_of_execution(*args, **kwargs) : 
     start_timestamp = time.time()
@@ -63,6 +66,9 @@ result = multiply_numbers([i for i in range(1, 10)])
 print(f"Result is {result}")
 '''
 
+'''
+  Converts data type to required component parts 
+'''
 def convert_to_data_type_decorator_function(target_type) : 
   def type_conversion_decorator(function_to_decorate) : 
     def wrapper(*args, **kwargs) : 
@@ -88,6 +94,9 @@ string_result = concatenate_strings("Python ", "Decorator")
 print(f"Result is {string_result} with typing of {type(string_result)}")
 '''
 
+'''
+  Cached results decorator function caches results for later usage 
+'''
 def cached_results_decorator_function(function_to_decorate) : 
   result_cache = {} 
   def wrapper(*args, **kwargs) : 
@@ -116,6 +125,9 @@ for i in range(1, 5) :
     calculate_product(i, j) 
 '''
 
+'''
+  Cached results decorator function with expiration time in seconds 
+'''
 def cached_results_decorator_function_with_expiration_time(expiry_time_seconds=60) : 
   def decorator_function(function_to_decorate) : 
     results_cache = {} 
@@ -186,7 +198,10 @@ def run_on_schedule_frequency(start_time = None, frequency=3600*24, target_datab
         print(f"Error processing request : {error_message}. Shutting down process.")
         schedule_state = False 
 '''
-        
+
+'''
+  Decorator function to check input numeric  values follow a lambda pattern for function to decorate
+'''
 def check_input_numeric_values_follow_lambda_pattern_for_function_to_decorate(value) : 
   def argument_validation_wrapper(function_to_decorate) : 
     def validate_and_calculate(*args, **kwargs) : 
@@ -210,6 +225,9 @@ print(f"Using 5,  the result of our compute third power function is {compute_thi
 print(f"Using -2, the result of our compute third power function is {compute_third_power(-2)}")
 '''
 
+'''
+  Retry on failure function decorator with retry delay between attempts up to max atempts
+'''
 def retry_on_failure_function_decorator(max_attempts=1, retry_delay=1) : 
   def function_to_retry(function_to_decorate): 
     def decoration_wrapper(*args, **kwargs) : 
@@ -224,7 +242,7 @@ def retry_on_failure_function_decorator(max_attempts=1, retry_delay=1) :
         except Exception as error : 
           print(f"Error occurred while attempting{combined_string}. This is retry {i+1}")
           time.sleep(retry_delay)
-      raise Exception(f"Maximum attempts exceeded while attempting{combined_string}. Function fails")
+      raise Exception(f"Maximum attempts exceeded while attempting{combined_string}. Failing {start_string}")
     return decoration_wrapper
   return function_to_retry
 
@@ -254,6 +272,9 @@ except Exception as error_message:
   print(f"Failed{default_database_target_string}{default_sql_execution_string} resulting in {error_message}.")
 '''
 
+'''
+  Exponential delay retry spaces out retries over time to help insure that run over is not occurring
+'''
 def exponential_delay_retry_on_failure_function_decorator(max_attempts=1, retry_delay_start=1, retry_delay_exponential_multiple=2) : 
   def function_to_retry(function_to_decorate) : 
     def decoration_wrapper(*args, **kwargs) : 
@@ -304,6 +325,10 @@ except Exception as error_message:
   print(f"Failed{default_database_target_string}{default_sql_execution_string} resulting in {error_message}.")
 '''
 
+'''
+  rate limiting decorator function allows for the function to have a certain number of 
+  calls that can be made within a set reset period to prevent ddos spamming of api calls 
+'''
 def rate_limit_function_decorator(max_allowed_calls=10, reset_period_seconds=10) : 
   def decorate_rate_limited_function(function_to_decorate) : 
     calls_count = 0
@@ -337,6 +362,9 @@ time.sleep(10)
 make_api_call()
 '''
 
+'''
+  Exception handler with useful defaulting error message 
+'''
 def handle_exceptions(default_response_message="Please address the above error before retrying.") : 
   def exception_handler_decorator(function_to_decorate) : 
     def decorated_function_wrapper(*args, **kwargs) : 
@@ -358,9 +386,5 @@ result = divide_numbers_safely(7, 0)
 print(f"Result produced is {result}")
 '''
           
-          
-        
-    
-    
-    
-    
+if __name__ == "__main__" : 
+  print("Can't do this that way") 
